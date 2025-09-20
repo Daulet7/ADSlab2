@@ -1,0 +1,148 @@
+AAA
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int search(int n){
+    vector<int> seq(n);
+    for(int i = 0; i<n; i++){
+        cin >> seq[i];
+    }
+
+    int k;
+    cin >> k;
+
+    int d = k - seq[n-1];
+    int min = abs(d);
+    int value = seq[n-1];
+
+    for(int i = n-2; i>=0; i--){
+        int t = k - seq[i];
+        int maybe = abs(t);
+        if(maybe <= min){
+            min = maybe;
+            value = seq[i];
+        }
+    }
+
+    int answer;
+
+    for(int i = 0 ;i <n; i++){
+        if(value == seq[i]){
+            answer = i;
+            break;
+        }
+    }
+
+    return answer;
+}
+
+int main(){
+    int n;
+    cin >> n;
+    int answer = search(n);
+    cout << answer;
+    return 0;
+}
+
+
+BBBBBBBB
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+int main(){
+    int n, k;
+    cin >> n >> k;
+
+    queue<string> poem;
+
+    for(int i = 0; i<n; i++){
+        string a;
+        cin >> a;
+        poem.push(a);
+    }
+
+    for(int i =0; i<k; i++){
+        string b = poem.front();
+        poem.pop();
+        poem.push(b);
+    }
+
+    for(int i = 1; i<=n; i++){
+        cout << poem.front() << " ";
+        poem.pop();
+    }
+
+    return 0;
+}
+
+CCCCCC
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+
+    vector<pair<int, int>> seq;
+    for(int i = 0; i < n; i++){
+        int a;
+        cin >> a;
+
+        seq.push_back({0, a});
+    }
+
+    for(int i = 0; i<n; i++){
+        if(i%2 !=0){
+            seq[i].first = 1;
+        }
+    }
+
+    for(int i = 0; i<n; i++){
+        if(seq[i].first == 0){
+            cout << seq[i].second << " ";
+        }
+    }
+
+    return 0;
+
+}
+DDDDDDDDD
+#include <iostream>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+void mode(int n){
+    map<int,int> seq;
+
+    for(int i = 0; i<n; i++){
+        int a; 
+        cin >> a;
+        seq[a]++;
+    }
+
+    int md = 0;
+    for(auto i = seq.begin(); i != seq.end(); ++i){
+        md = max(md, i -> second);
+    }
+    
+    for(auto i = seq.rbegin(); i != seq.rend(); ++i){
+        if(i -> second == md){
+            cout << i -> first << " ";
+        }
+    }
+}
+
+int main(){
+    int n; 
+    cin >> n;
+    mode(n);
+    return 0;
+}
